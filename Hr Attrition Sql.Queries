@@ -1,0 +1,132 @@
+-- 1. View Complete Data
+SELECT * FROM HrData;
+
+-- 2. Total Employees
+SELECT COUNT(*) AS Total_Employees
+FROM HrData;
+
+-- 3. Employees by Department
+SELECT Department, COUNT(*) AS Employee_Count
+FROM HrData
+GROUP BY Department
+ORDER BY Employee_Count DESC;
+
+-- 4. Employees by Work Mode
+SELECT Work_Mode, COUNT(*) AS Total_Employees
+FROM HrData
+GROUP BY Work_Mode;
+
+-- 5. Employees by Status
+SELECT Status, COUNT(*) AS Total_Employees
+FROM HrData
+GROUP BY Status;
+
+-- 6. Average Salary by Department
+SELECT Department,
+ROUND(AVG(Salary_INR),2) AS Avg_Salary
+FROM HrData
+GROUP BY Department
+ORDER BY Avg_Salary DESC;
+
+-- 7. Highest Paid Employees
+SELECT Full_Name, Department, Salary_INR
+FROM HrData
+ORDER BY Salary_INR DESC
+LIMIT 10;
+
+-- 8. Performance Rating Distribution
+SELECT Performance_Rating,
+COUNT(*) AS Employees
+FROM HrData
+GROUP BY Performance_Rating
+ORDER BY Performance_Rating DESC;
+
+-- 9. Average Experience by Department
+SELECT Department,
+ROUND(AVG(Experience_Years),2) AS Avg_Experience
+FROM HrData
+GROUP BY Department
+ORDER BY Avg_Experience DESC;
+
+-- 10. Employees Hired Each Year
+SELECT Hire_Year,
+COUNT(*) AS Total_Hired
+FROM HrData
+GROUP BY Hire_Year
+ORDER BY Hire_Year;
+
+-- 11. Total Salary Expense by Department
+SELECT Department,
+SUM(Salary_INR) AS Total_Salary
+FROM HrData
+GROUP BY Department
+ORDER BY Total_Salary DESC;
+
+-- 12. Employees by Location
+SELECT Location,
+COUNT(*) AS Employee_Count
+FROM HrData
+GROUP BY Location
+ORDER BY Employee_Count DESC;
+
+-- 13. Top Performing Employees
+SELECT Full_Name,
+Department,
+Performance_Rating
+FROM HrData
+WHERE Performance_Rating >= 4.5
+ORDER BY Performance_Rating DESC;
+
+-- 14. Average Salary by Work Mode
+SELECT Work_Mode,
+ROUND(AVG(Salary_INR),2) AS Avg_Salary
+FROM HrData
+GROUP BY Work_Mode;
+
+-- 15. Department Wise Active Employees
+SELECT Department,
+COUNT(*) AS Active_Employees
+FROM HrData
+WHERE Status='Active'
+GROUP BY Department
+ORDER BY Active_Employees DESC;
+
+-- 16. Experience Category
+SELECT
+CASE
+WHEN Experience_Years < 3 THEN 'Junior'
+WHEN Experience_Years BETWEEN 3 AND 7 THEN 'Mid-Level'
+ELSE 'Senior'
+END AS Experience_Level,
+COUNT(*) AS Employees
+FROM HrData
+GROUP BY Experience_Level;
+
+-- 17. Top 5 Highest Paying Departments
+SELECT Department,
+ROUND(AVG(Salary_INR),2) AS Avg_Salary
+FROM HrData
+GROUP BY Department
+ORDER BY Avg_Salary DESC
+LIMIT 5;
+
+-- 18. Employees Working Remote
+SELECT *
+FROM HrData
+WHERE Work_Mode='Remote';
+
+-- 19. Employees with More Than 10 Years Experience
+SELECT Full_Name,
+Department,
+Experience_Years
+FROM HrData
+WHERE Experience_Years > 10
+ORDER BY Experience_Years DESC;
+
+-- 20. Dashboard KPI Query
+SELECT
+COUNT(*) AS Total_Employees,
+SUM(CASE WHEN Status='Active' THEN 1 ELSE 0 END) AS Active_Employees,
+ROUND(AVG(Salary_INR),2) AS Average_Salary,
+ROUND(AVG(Performance_Rating),2) AS Average_Performance
+FROM HrData;
