@@ -1,4 +1,4 @@
-# 📊 HR Workforce Analytics Dashboard
+# 📊 HR Attrition Analytics 
 
 ## 📌 Project Overview
 
@@ -29,7 +29,7 @@ and the development of an interactive Power BI dashboard to monitor employee per
 
 ---
 
-## 📂 Dataset
+## 📂 Dataset from Kaggle
 
 The dataset includes the following employee attributes:
 
